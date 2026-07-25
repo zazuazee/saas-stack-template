@@ -1,0 +1,18 @@
+# Pastas compiladas / Dependências
+**/node_modules/
+**/target/
+**/.angular/
+**/.idea/
+**/.vscode/
+**/.DS_Store/
+
+# Arquivos de Build do Java / Ionic
+*.class
+*.jar
+*.war
+/mobile/android/
+/mobile/ios/
+
+# Ambientes / Variáveis Secretas
+.env
+*.local
