@@ -1,38 +1,91 @@
-\# 🚀 SaaS Stack Starter Kit
+# 🚀 SaaS Stack Template
 
+Template base (Boilerplate) para criação de aplicações SaaS modernas, robustas e escaláveis.
 
+## 🛠️ Tecnologias Utilizadas
 
-Template base para criação de SaaS composto por Spring Boot, Angular, Ionic e PostgreSQL via Docker.
+* **Backend:** Java (Spring Boot) + Hibernate / JPA
+* **Banco de Dados:** PostgreSQL (via Docker)
+* **Web Frontend:** Angular CLI
+* **Mobile App:** Ionic + Capacitor (Angular Standalone Components)
+* **Ambiente & Deploy:** Docker Compose + Dotenv (`.env`)
 
+---
 
+## 📁 Estrutura do Projeto
 
-\## 📁 Estrutura de Pastas
+```text
+├── api/                  # Backend Spring Boot
+├── web/                  # Frontend Web Angular
+├── mobile/               # App Mobile Ionic
+├── docker-compose.yml    # Orquestração do Banco PostgreSQL
+├── .env.example          # Modelo de variáveis de ambiente
+└── README.md
+```
 
+---
 
+## ⚙️ Passo a Passo para Configuração Inicial
 
-\- `/docker-compose.yml`: Infraestrutura do banco PostgreSQL local.
+**1. Duplicar o arquivo de variáveis de ambiente**
 
-\- `/api`: Backend Spring Boot (Java 21, JPA, Web, Validation, Lombok).
+Na raiz do projeto, crie o arquivo `.env` a partir do modelo `.env.example`:
 
-\- `/web`: Dashboard Web em Angular (Standalone, SCSS, HttpClient).
+```powershell
+Copy-Item .env.example .env
+```
 
-\- `/mobile`: App Mobile em Ionic (Angular + Capacitor).
+Edite o arquivo `.env` para ajustar os nomes e parâmetros do projeto atual (no exemplo abaixo, o nome do projeto é `taskflow`):
 
+```env
+APP_NAME=taskflow-api
+DB_CONTAINER_NAME=taskflow-postgres
+DB_NAME=taskflow_db
+DB_USER=postgres
+DB_PASSWORD=postgrespassword
+DB_PORT=5432
+DB_HOST=localhost
+```
 
+---
 
-\## ⚡ Como Usar Este Template para um Novo Projeto
+## 🚀 Como Rodar o Projeto Localmente
 
+### 1️⃣ Banco de Dados (PostgreSQL)
+Certifique-se de estar com o Docker rodando e execute na raiz:
+```powershell
+docker compose up -d
+```
 
+### 2️⃣ API (Spring Boot)
+Navegue até a pasta `api` e inicie o servidor (ele carregará o `.env` e conectará ao banco automaticamente):
+```powershell
+cd api
+./mvnw spring-boot:run
+```
+> **URL da API:** http://localhost:8080
 
-1\. Clone ou use o botão \*\*"Use this template"\*\* no GitHub.
+### 3️⃣ Web (Angular)
+Em outro terminal, acesse a pasta `web` e execute:
+```powershell
+cd web
+ng serve
+```
+> **URL Web:** http://localhost:4200
 
-2\. Altere o nome das pastas ou configurações no `pom.xml` (API) e `package.json` (Web/Mobile) para o nome do novo SaaS.
+### 4️⃣ Mobile (Ionic)
+Em outro terminal, acesse a pasta `mobile` e execute:
+```powershell
+cd mobile
+ionic serve
+```
+> **URL Mobile:** http://localhost:8100
 
-3\. Suba o banco local: `docker compose up -d`
+---
 
-4\. Inicie a API: `cd api \&\& ./mvnw spring-boot:run`
+## ⚠️ Observação sobre criação de Submódulos
 
-5\. Inicie a Web: `cd web \&\& ng serve`
+Para evitar que o Git crie as pastas `web` ou `mobile` como submódulos/atalhos ao regerar componentes, sempre utilize as flags de pular inicialização de repositório git:
 
-6\. Inicie o Mobile: `cd mobile \&\& ionic serve`
-
+* **Angular:** `ng new web --skip-git`
+* **Ionic:** `ionic start mobile blank --type=angular --capacitor --no-git`
