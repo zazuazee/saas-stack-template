@@ -16,6 +16,7 @@ Template base (Boilerplate) para criação de aplicações SaaS modernas, robust
 
 ```text
 ├── api/                  # Backend Spring Boot
+├── landing/              # Landing Page Angular (com SSR p/ SEO)
 ├── web/                  # Frontend Web Angular
 ├── mobile/               # App Mobile Ionic
 ├── docker-compose.yml    # Orquestração do Banco PostgreSQL
@@ -81,6 +82,13 @@ ionic serve
 ```
 > **URL Mobile:** http://localhost:8100
 
+### 4️⃣ Landing Page (Site Institucional / Vendas)
+Em outro terminal, acesse a pasta `landing` e execute:
+```powershell
+cd landing
+ng serve
+```
+> **URL Landing:** http://localhost:4200 (ou outra que o angular fornecer)
 ---
 
 ## ⚠️ Observação sobre criação de Submódulos
@@ -89,3 +97,4 @@ Para evitar que o Git crie as pastas `web` ou `mobile` como submódulos/atalhos 
 
 * **Angular:** `ng new web --skip-git`
 * **Ionic:** `ionic start mobile blank --type=angular --capacitor --no-git`
+* **Angular (Landing com SSR):** `ng new landing --ssr --skip-git --style=scss --routing`
